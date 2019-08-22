@@ -32,7 +32,7 @@ Setup Visual Studio
 - Put Lib .dlls and /includes in one place
 - Open the VS Project file and open the Project Settings
 - Set: C/C++ -> General -> AdditionalIncludeDirectories -> Path to "...\SDL2\include" (and to all other include folders)
-- Set: Linker -> General -> AdditionalLibraryDirectories -> Path to "...\SDL2\lib\x86" (and to all other .dll folders)
+- Set: Linker -> General -> AdditionalLibraryDirectories -> Path to "...\SDL2\lib\x64" (and to all other .dll folders)
 - Set: Linker -> Input -> AdditionalDependencies -> Add "SDL2.lib" and "SDL2main.lib" (and all other Library files)
 - And copy the SDL2.dll (and all other libs) into the Debug dir, where the .exe is
 
