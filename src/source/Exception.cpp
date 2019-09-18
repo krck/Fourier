@@ -1,4 +1,7 @@
+
 #include "../header/Exception.hpp"
+
+using namespace Fourier;
 
 Exception::Exception(int line, const char* file, std::string message) noexcept
 	: _line(line), _file(file), _errorMessage(message) {}

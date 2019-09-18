@@ -1,3 +1,4 @@
+
 #include "../header/Application.hpp"
 
 using namespace Fourier;
@@ -18,7 +19,7 @@ bool Application::InitApplication() {
 	try {
 		// Initialize all SDL2 subsystems
 		if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-			throw sException("SDL Error on Init: " + std::string(SDL_GetError()));
+			throw FourierException("SDL Error on Init: " + std::string(SDL_GetError()));
 
 		SetupWindow();
 		SetupSDL();
@@ -42,7 +43,6 @@ int Application::Run() {
 		Transformations transform = Transformations();
 		OnWindowResize(graphics);
 
-
 		// Manually define the Circles for now
 		// ... this should be done via GUI input
 		int angle = 0;
@@ -60,7 +60,7 @@ int Application::Run() {
 		transform.Transform(tmpCircles, 1);
 		Pixel lastSumDot = tmpCircles.back().CycleDot;
 
-
+		// Main Loop
 		SDL_Event event;
 		uint timeStamp_new = SDL_GetTicks(), timeStamp_old = SDL_GetTicks();
 		while (!SDL_QuitRequested()) {
@@ -80,7 +80,7 @@ int Application::Run() {
 				KW_Paint(_gui.get());
 
 				// Constant rotation of one Degree per Frame
-				// Frequency 1 = 6 sec. for one full rotation
+				// Frequency 1 == "6 sec. for one full rotation"
 				angle = (angle > 360) ? 1 : angle + 1;
 
 				// Transform and draw all circles (Top Layer)
@@ -106,11 +106,12 @@ void Application::SetupWindow() {
 	const uint pos = SDL_WINDOWPOS_UNDEFINED;
 	const uint flags = (SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED);
 	_window = sdl_make_shared(SDL_CreateWindow(_appName.c_str(), pos, pos, 1280, 720, flags));
+	
 	// Set the min. Window size, if creation was successful 
 	if (_window != nullptr)
 		SDL_SetWindowMinimumSize(_window.get(), 1280, 720);
 	else
-		throw sException("SDL Error on Window creation: " + std::string(SDL_GetError()));
+		throw FourierException("SDL Error on Window creation: " + std::string(SDL_GetError()));
 }
 
 //
@@ -121,7 +122,7 @@ void Application::SetupSDL() {
 	// Set only the SDL_RENDERER_ACCELERATED Flag and NO Vsync! (Managing Frame-Times is important)
 	_renderer = sdl_make_shared(SDL_CreateRenderer(_window.get(), -1, SDL_RENDERER_ACCELERATED));
 	if (_renderer == nullptr)
-		throw sException("SDL Error on Renderer creation: " + std::string(SDL_GetError()));
+		throw FourierException("SDL Error on Renderer creation: " + std::string(SDL_GetError()));
 }
 
 //
@@ -132,23 +133,23 @@ void Application::SetupKiwiGUI() {
 	// You can have multiple GUI instances in the same/different windows, based on the Render Driver
 	_driver = kiwi_make_shared(KW_CreateSDL2RenderDriver(_renderer.get(), _window.get()));
 	if (_driver == nullptr)
-		throw sException("KiWi GUI Error creating GUI Driver: " + std::string(SDL_GetError()));
+		throw FourierException("KiWi GUI Error creating GUI Driver: " + std::string(SDL_GetError()));
 
 	_surface = KW_LoadSurface(_driver.get(), (_resourcePath + "tileset.png").c_str());
 	if (_surface == nullptr)
-		throw sException("KiWi GUI Error creating GUI Surface:" + std::string(SDL_GetError()));
+		throw FourierException("KiWi GUI Error creating GUI Surface:" + std::string(SDL_GetError()));
 
 	// Finally create the GUI
 	_gui = kiwi_make_shared(KW_Init(_driver.get(), _surface));
 	if (_gui == nullptr)
-		throw sException("KiWi GUI Error setting up the GUI: " + std::string(SDL_GetError()));
+		throw FourierException("KiWi GUI Error setting up the GUI: " + std::string(SDL_GetError()));
 
 	// Load the font and set it with Font-size 12
 	_font = KW_LoadFont(_driver.get(), (_resourcePath + "sourcesans-pro-semibold.ttf").c_str(), 12);
 	if (_font != nullptr)
 		KW_SetFont(_gui.get(), _font);
 	else
-		throw sException("KiWi GUI Error loading Font: " + std::string(SDL_GetError()));
+		throw FourierException("KiWi GUI Error loading Font: " + std::string(SDL_GetError()));
 }
 
 //
@@ -165,7 +166,7 @@ void Application::OnWindowResize(Graphics& graphics) {
 	if (_background != nullptr)
 		graphics.UpdateBackground(_background, _actualWidth, _actualHeight);
 	else
-		throw sException("SDL Error on Texture creation: " + std::string(SDL_GetError()));
+		throw FourierException("SDL Error on Texture creation: " + std::string(SDL_GetError()));
 }
 
 //

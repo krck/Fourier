@@ -1,11 +1,13 @@
-#pragma once
+
+#ifndef FOURIER_COLOR_H
+#define FOURIER_COLOR_H
 
 #include "Settings.hpp"
 
 // Predefined Colors
-#define COLOR_RED		Color(179, 0, 0)
-#define COLOR_GREEN		Color(0, 179, 0)
-#define COLOR_BLUE 		Color(0, 0, 179)
+#define COLOR_RED			Color(179, 0, 0)
+#define COLOR_GREEN			Color(0, 179, 0)
+#define COLOR_BLUE 			Color(0, 0, 179)
 #define COLOR_YELLOW 		Color(230, 184, 0)
 #define COLOR_BLACK 		Color(0, 0, 0)
 #define COLOR_GRAY_LIGHT 	Color(220, 220, 220)
@@ -13,11 +15,14 @@
 #define COLOR_GRAY_DARK 	Color(115, 115, 115)
 #define COLOR_WHITE 		Color(255, 255, 255)
 
+namespace Fourier {
+
 template <class T>
-class _Color {
+struct _Color {
 public:
 	T r, g, b, a;
 
+public:
 	_Color() : r(255), g(255), b(255), a(255) {} // white as default
 	_Color(const _Color& rhs) = default;
 	_Color(_Color&& rhs) noexcept = default;
@@ -59,3 +64,7 @@ public:
 // Predefined Color type 
 // (Could be "byte", but that would likely crash the arithmetic operators)
 typedef _Color<ushort> Color;
+
+}
+
+#endif // FOURIER_COLOR_H

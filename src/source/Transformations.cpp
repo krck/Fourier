@@ -1,4 +1,7 @@
+
 #include "../header/Transformations.hpp"
+
+using namespace Fourier;
 
 void Transformations::Transform(std::vector<Circle>& circles, float angle) {
 	Pixel prevDot = circles.front().Center;

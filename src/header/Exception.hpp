@@ -1,9 +1,13 @@
-#pragma once
+
+#ifndef FOURIER_EXCEPTION_H
+#define FOURIER_EXCEPTION_H
 
 #include "Settings.hpp"
 #include <exception>
 #include <sstream>
 #include <string>
+
+namespace Fourier {
 
 class Exception : public std::exception
 {
@@ -22,4 +26,8 @@ public:
 };
 
 // Exception macros adding LINE and FILE automatically
-#define sException(message) Exception(__LINE__, __FILE__, message)
+#define FourierException(message) Exception(__LINE__, __FILE__, message)
+
+}
+
+#endif // FOURIER_EXCEPTION_H

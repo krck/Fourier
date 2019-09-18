@@ -1,8 +1,12 @@
-#pragma once
+
+#ifndef FOURIER_CIRCLE_H
+#define FOURIER_CIRCLE_H
 
 #include "Vec2.hpp"
 #include <utility>
 
+namespace Fourier {
+	
 class Circle {
 public:
 	Pixel Center;
@@ -36,3 +40,7 @@ public:
 
 	~Circle() = default;
 };
+
+}
+
+#endif // FOURIER_CIRCLE_H

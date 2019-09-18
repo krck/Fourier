@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef FOURIER_SETTINGS_H
+#define FOURIER_SETTINGS_H
 
 #ifdef _WIN32
 #include <SDL.h>
@@ -22,6 +24,12 @@
 
 #define FPS 60
 
+namespace Fourier {
+
 typedef unsigned short ushort;
 typedef unsigned int uint;
 typedef unsigned char byte;
+
+}
+
+#endif // FOURIER_SETTINGS_H

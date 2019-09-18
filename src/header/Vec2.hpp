@@ -1,8 +1,12 @@
-#pragma once
+
+#ifndef FOURIER_VEC2_H
+#define FOURIER_VEC2_H
 
 #include "Settings.hpp"
 #include <utility>
 #include <cmath>
+
+namespace Fourier {
 
 //
 // Rule of 4 (Copy-Swap-Assignment) Example Class
@@ -10,10 +14,11 @@
 // https://en.cppreference.com/w/cpp/language/operators
 //
 template <class T>
-class _Vec2 {
+struct _Vec2 {
 public:
 	T X, Y;
 
+public:
 	_Vec2() : X(0), Y(0) {}
 	_Vec2(T v) : X(v), Y(v) {}
 	_Vec2(T x, T y) : X(x), Y(y) {}
@@ -87,3 +92,7 @@ typedef _Vec2<ushort> Pixel;
 typedef _Vec2<int> Vec2i;
 typedef _Vec2<float> Vec2;
 typedef _Vec2<double> Vec2d;
+
+}
+
+#endif // FOURIER_VEC2_H

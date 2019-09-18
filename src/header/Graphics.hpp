@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef FOURIER_GRAPHICS_H
+#define FOURIER_GRAPHICS_H
 
 #include "Circle.hpp"
 #include "Color.hpp"
@@ -8,6 +10,8 @@
 #include <memory>
 #include <algorithm>
 #include <iostream>
+
+namespace Fourier {
 
 class Graphics {
 private:
@@ -40,3 +44,7 @@ private:
 	void SetPixel(const ushort& x, const ushort& y);
 	void SetBackgroundPixel(std::vector<byte>& backgroundPixels, ushort x, ushort y, const Color& color);
 };
+
+}
+
+#endif // FOURIER_GRAPHICS_H

@@ -1,4 +1,7 @@
+
 #include "../header/Graphics.hpp"
+
+using namespace Fourier;
 
 void Graphics::Draw(const std::vector<Circle>& circles, std::vector<byte>& backgroundPixels, const Pixel& lastSumDot) {
 	// Clear the Frame (white)
