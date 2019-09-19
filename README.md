@@ -1,12 +1,10 @@
 Fourier
 =======
 
-... 
-
 About
 -----
 
-...
+This is a simple 2D Application to visualize Fourier Transformations. Build with the SDL2 graphics library and available as Visual Studio or Xcode Project (although the latter has to be updated). Due to a lack of time it's only half finished and missing the most important part: Actual Fourier Transformations. To be continued ...
 
 Dependencies
 ------------
